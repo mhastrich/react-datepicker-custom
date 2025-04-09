@@ -99,6 +99,7 @@
   "dependencies": {
     "@floating-ui/react": "^0.27.3",
     "clsx": "^2.1.1",
+    "cross-env": "^7.0.3",
     "date-fns": "^4.1.0"
   },
   "scripts": {
@@ -109,11 +110,11 @@
     "prettier": "prettier --write '**/*.{js,jsx,ts,tsx}'",
     "prettier:check": "prettier --check '**/*.{js,jsx,ts,tsx}'",
     "start": "yarn --cwd docs-site install && yarn --cwd docs-site start",
-    "test": "NODE_ENV=test jest",
-    "test:ci": "NODE_ENV=test jest --ci --coverage",
-    "test:watch": "NODE_OPTIONS=--openssl-legacy-provider NODE_ENV=test jest --watch",
-    "build": "NODE_ENV=production yarn run build:src && NODE_ENV=production yarn run css:prod && NODE_ENV=production yarn run css:modules:prod && NODE_ENV=production yarn run css:dev && NODE_ENV=production yarn run css:modules:dev",
-    "build-dev": "NODE_ENV=development yarn run js:dev && NODE_ENV=development yarn run css:dev && NODE_ENV=development yarn run css:modules:dev",
+    "test": "cross-env NODE_ENV=test jest",
+    "test:ci": "cross-env NODE_ENV=test jest --ci --coverage",
+    "test:watch": "NODE_OPTIONS=--openssl-legacy-provider cross-env NODE_ENV=test jest --watch",
+    "build": "cross-env NODE_ENV=production yarn run build:src && cross-env NODE_ENV=production yarn run css:prod && cross-env NODE_ENV=production yarn run css:modules:prod && cross-env NODE_ENV=production yarn run css:dev && cross-env NODE_ENV=production yarn run css:modules:dev",
+    "build-dev": "cross-env NODE_ENV=development yarn run js:dev && cross-env NODE_ENV=development yarn run css:dev && cross-env NODE_ENV=development yarn run css:modules:dev",
     "css:prod": "sass --style compressed src/stylesheets/datepicker.scss > dist/react-datepicker.min.css",
     "css:modules:prod": "sass --style compressed src/stylesheets/datepicker-cssmodules.scss | tee dist/react-datepicker-cssmodules.min.css dist/react-datepicker-min.module.css",
     "css:dev": "sass --style expanded src/stylesheets/datepicker.scss > dist/react-datepicker.css",
@@ -127,5 +128,5 @@
   "lint-staged": {
     "*.{js,jsx,ts,tsx,json,css,scss,md}": ["prettier --write", "git add"]
   },
-  "packageManager": "yarn@4.7.0"
+  "packageManager": "yarn@4.9.0"
 }
