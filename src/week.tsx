@@ -192,6 +192,6 @@ export default class Week extends Component<WeekProps> {
       ),
       "react-datepicker__week--keyboard-selected": this.isKeyboardSelected(),
     };
-    return <div className={clsx(weekNumberClasses)}>{this.renderDays()}</div>;
+    return <>{this.renderDays()}</>;
   }
 }
